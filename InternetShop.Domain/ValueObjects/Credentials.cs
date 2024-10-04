@@ -6,7 +6,7 @@ namespace InternetShop.Domain.ValueObjects
     public class Credentials : ValueObject
     {
         public const int MAX_LOGIN_LENGHT = 20;
-        public const int MAX_PASSWORD_HASH_LENGHT = 20;
+        public const int MAX_PASSWORD_HASH_LENGHT = 120;
 
         private Credentials(string login, string passwordHash)
         {

@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InternetShop.Data.Migrations
 {
     [DbContext(typeof(InternetShopDbContext))]
-    [Migration("20241003224921_initial")]
+    [Migration("20241004084639_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -78,7 +78,8 @@ namespace InternetShop.Data.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(65,30)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("char(36)");
@@ -125,7 +126,8 @@ namespace InternetShop.Data.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(65,30)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<Guid?>("ProductId")
                         .HasColumnType("char(36)");
@@ -160,7 +162,8 @@ namespace InternetShop.Data.Migrations
                         .HasColumnType("varchar(150)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(65,30)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -194,8 +197,8 @@ namespace InternetShop.Data.Migrations
 
                             b1.Property<string>("PasswordHash")
                                 .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("varchar(20)")
+                                .HasMaxLength(120)
+                                .HasColumnType("varchar(120)")
                                 .HasColumnName("PasswordHash");
                         });
 
@@ -215,14 +218,12 @@ namespace InternetShop.Data.Migrations
                             b1.IsRequired();
 
                             b1.Property<string>("Lastname")
-                                .ValueGeneratedOnUpdateSometimes()
                                 .HasMaxLength(50)
                                 .HasColumnType("varchar(50)")
-                                .HasColumnName("Name");
+                                .HasColumnName("Lastname");
 
                             b1.Property<string>("Name")
                                 .IsRequired()
-                                .ValueGeneratedOnUpdateSometimes()
                                 .HasMaxLength(50)
                                 .HasColumnType("varchar(50)")
                                 .HasColumnName("Name");

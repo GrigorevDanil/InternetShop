@@ -27,7 +27,10 @@ namespace InternetShop.Data.Configurations
                .HasMaxLength(Product.MAX_DESCRIPTION_LENGHT)
                .IsRequired();
 
-            builder.Property(p => p.Price).IsRequired();
+            builder.Property(p => p.Price)
+                 .HasPrecision(10, 2)
+                 .IsRequired();
+
             builder.Property(p => p.Count).IsRequired();
         }
     }

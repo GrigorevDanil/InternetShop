@@ -57,8 +57,9 @@ namespace InternetShop.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     Login = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
-                    PasswordHash = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false),
+                    PasswordHash = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false),
                     Email = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false),
+                    Lastname = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
                     Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     Surname = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     Gender = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false),
@@ -80,7 +81,7 @@ namespace InternetShop.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Price = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     Count = table.Column<int>(type: "int", nullable: false),
                     BrandId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
                     CategoryId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
@@ -106,7 +107,7 @@ namespace InternetShop.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    TotalAmount = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    TotalAmount = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     DatePayment = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UserId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
                     OrderStatus = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false),
@@ -128,7 +129,7 @@ namespace InternetShop.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Price = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     Count = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
                     OrderId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")

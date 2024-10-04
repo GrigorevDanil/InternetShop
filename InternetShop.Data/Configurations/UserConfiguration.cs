@@ -29,7 +29,7 @@ namespace InternetShop.Data.Configurations
 
                 b.Property(p => p.Lastname)
                     .HasMaxLength(FullName.MAX_LASTNAME_LENGHT)
-                    .HasColumnName("Name")
+                    .HasColumnName("Lastname")
                     .IsRequired(false);
             });
 

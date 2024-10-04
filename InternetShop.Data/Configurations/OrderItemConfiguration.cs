@@ -16,7 +16,10 @@ namespace InternetShop.Data.Configurations
             builder.HasOne(e => e.Order)
                 .WithMany(e => e.Items);
 
-            builder.Property(p => p.Price).IsRequired();
+            builder.Property(p => p.Price)
+                 .HasPrecision(10, 2)
+                .IsRequired();
+
             builder.Property(p => p.Count).IsRequired();
         }
     }

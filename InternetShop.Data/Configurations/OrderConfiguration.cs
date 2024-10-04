@@ -17,7 +17,9 @@ namespace InternetShop.Data.Configurations
             builder.HasOne(e => e.User)
                 .WithMany(e => e.Orders);
 
-            builder.Property(p => p.TotalAmount).IsRequired();
+            builder.Property(p => p.TotalAmount)
+                .HasPrecision(10,2)
+                .IsRequired();
 
             builder.ComplexProperty(p => p.OrderStatuses, b =>
             {
