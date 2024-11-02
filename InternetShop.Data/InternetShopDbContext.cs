@@ -24,5 +24,5 @@ namespace InternetShop.Data
 
             base.OnModelCreating(modelBuilder);
         }
-    }
+    }   
 }

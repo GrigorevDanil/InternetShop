@@ -30,6 +30,12 @@ namespace InternetShop.Domain.ValueObjects
         public string Surname { get; }
         public string Name { get; }
         public string? Lastname { get; }
+
+        public override string ToString() =>
+                Lastname != null
+                ? $"{Surname} {Name} {Lastname}"
+                : $"{Surname} {Name}";
+
         protected override IEnumerable<object> GetEqualityComponents()
         {
             yield return Surname;

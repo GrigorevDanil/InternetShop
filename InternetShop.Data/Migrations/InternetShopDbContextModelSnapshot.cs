@@ -167,6 +167,21 @@ namespace InternetShop.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.ComplexProperty<Dictionary<string, object>>("MainPhoto", "InternetShop.Domain.Entities.Product.MainPhoto#MainPhoto", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<string>("ContentType")
+                                .IsRequired()
+                                .HasColumnType("longtext")
+                                .HasColumnName("content_type");
+
+                            b1.Property<string>("Path")
+                                .IsRequired()
+                                .HasColumnType("longtext")
+                                .HasColumnName("path");
+                        });
+
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");

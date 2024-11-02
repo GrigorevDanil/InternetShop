@@ -84,7 +84,9 @@ namespace InternetShop.Data.Migrations
                     Price = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     Count = table.Column<int>(type: "int", nullable: false),
                     BrandId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
-                    CategoryId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
+                    CategoryId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
+                    content_type = table.Column<string>(type: "longtext", nullable: false),
+                    path = table.Column<string>(type: "longtext", nullable: false)
                 },
                 constraints: table =>
                 {

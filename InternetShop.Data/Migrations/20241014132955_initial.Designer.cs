@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InternetShop.Data.Migrations
 {
     [DbContext(typeof(InternetShopDbContext))]
-    [Migration("20241004084639_initial")]
+    [Migration("20241014132955_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -169,6 +169,21 @@ namespace InternetShop.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
+
+                    b.ComplexProperty<Dictionary<string, object>>("MainPhoto", "InternetShop.Domain.Entities.Product.MainPhoto#MainPhoto", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<string>("ContentType")
+                                .IsRequired()
+                                .HasColumnType("longtext")
+                                .HasColumnName("content_type");
+
+                            b1.Property<string>("Path")
+                                .IsRequired()
+                                .HasColumnType("longtext")
+                                .HasColumnName("path");
+                        });
 
                     b.HasKey("Id");
 

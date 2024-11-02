@@ -32,6 +32,13 @@ namespace InternetShop.Data.Configurations
                  .IsRequired();
 
             builder.Property(p => p.Count).IsRequired();
+
+            builder.ComplexProperty(p => p.MainPhoto, b =>
+            {
+                b.IsRequired();
+                b.Property(p => p.Path).HasColumnName("path");
+                b.Property(p => p.ContentType).HasColumnName("content_type");
+            });
         }
     }
 }
