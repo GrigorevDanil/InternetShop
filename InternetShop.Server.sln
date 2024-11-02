@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.Domain", "InternetShop.Domain\InternetShop.Domain.csproj", "{B89F27D4-BED4-4156-9A14-DE73052A6BD2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.Data", "InternetShop.Data\InternetShop.Data.csproj", "{226786D2-002B-436A-890E-B7D70DC94FAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.Infrastructure", "InternetShop.Infrastructure\InternetShop.Infrastructure.csproj", "{226786D2-002B-436A-890E-B7D70DC94FAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InternetShop.Infrastructure", "InternetShop.Infrastructure\InternetShop.Infrastructure.csproj", "{01DAB335-9C00-48F1-A20C-24369705CA18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternetShop.Infrastructure.Authorization", "InternetShop.Infrastructure.Authorization\InternetShop.Infrastructure.Authorization.csproj", "{01DAB335-9C00-48F1-A20C-24369705CA18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

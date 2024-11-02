@@ -1,7 +1,7 @@
 using InternetShop.Application;
-using InternetShop.Data;
 using InternetShop.Infrastructure;
-using InternetShop.Infrastructure.Services;
+using InternetShop.Infrastructure.Authorization;
+using InternetShop.Infrastructure.Authorization.Services;
 using Microsoft.AspNetCore.CookiePolicy;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,8 +24,8 @@ builder.Services.AddCors(option =>
 
 builder.Services
     .AddApplication()
-    .AddData(configuration)
-    .AddInfrastructure(configuration);
+    .AddInfrastructure(configuration)
+    .AddInfrastructureAuthorization(configuration);
 
 builder.Services.Configure<JwtOption>(configuration.GetSection(nameof(JwtOption)));   
     

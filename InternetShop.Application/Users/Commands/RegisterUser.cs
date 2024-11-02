@@ -1,48 +1,39 @@
 ﻿using CSharpFunctionalExtensions;
-using InternetShop.Application.Interfaces.Auth;
 using InternetShop.Application.Interfaces.Messaging;
 using InternetShop.Domain.Common;
 using InternetShop.Domain.Entities;
-using InternetShop.Domain.Interfaces.Repositories;
 using InternetShop.Domain.ValueObjects;
+using Microsoft.AspNetCore.Identity;
 
 namespace InternetShop.Application.Users.Commands
 {
-    public record RegisterUserCommand (
-        string surname,
-        string name,
-        string? lastname,
-        string gender,
-        string numberPhone,
-        string login,
-        string password,
-        string email) : ICommand;
+    public record RegisterUserCommand(string Surname, string Name, string? Lastname, string Email, string UserName, string Password) : ICommand;
 
     public class RegisterUserHandler : ICommandHandler<RegisterUserCommand>
     {
-        private readonly IUserRepository userRepository;
-        private readonly IPasswordHasher passwordHasher;
+        private readonly UserManager<User> _userManager;
 
-        public RegisterUserHandler(IUserRepository userRepository, IPasswordHasher passwordHasher)
+        public RegisterUserHandler(UserManager<User> userManager)
         {
-            this.userRepository = userRepository;
-            this.passwordHasher = passwordHasher;
+            _userManager = userManager;
         }
 
         public async Task<UnitResult<ErrorList>> Handle(RegisterUserCommand command)
         {
-            var hashedPassword = passwordHasher.Generate(command.password);
-            var fullName = FullName.Create(command.surname, command.name, command.lastname).Value;
-            var phoneNumber = PhoneNumber.Create(command.numberPhone).Value;
-            var gender = Gender.Create(command.gender).Value;
-            var credential = Credentials.Create(command.login, hashedPassword).Value;
-            var email = Email.Create(command.email).Value;
+            var user = User.Create(
+                FullName.Create(command.Surname, command.Name, command.Lastname).Value,
+                Gender.Male);
 
-            var user = User.Create(fullName, gender, phoneNumber, credential, UserRole.User, email);
+            user.Value.Email = command.Email;
+            user.Value.UserName = command.UserName;;
 
-            await userRepository.Add(user.Value);
+            var result = await _userManager.CreateAsync(user.Value, command.Password);
+            if (result.Succeeded) return Result.Success<ErrorList>();
 
-            return Result.Success<ErrorList>();
+            var errors = result.Errors.Select(e => Error.Failure(e.Code, e.Description)).ToList();
+
+            return new ErrorList(errors);
+
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
+using InternetShop.Application.Dtos;
 using InternetShop.Application.Interfaces.Messaging;
-using InternetShop.Application.Models;
 using InternetShop.Domain.Interfaces.Repositories;
 
 namespace InternetShop.Application.Products.Queries
@@ -13,12 +13,7 @@ namespace InternetShop.Application.Products.Queries
     //    string? SortBy,
     //    string? SortDirection) : IQuery;
 
-    public record ProductDTO(
-        string Title,
-        string Description,
-        decimal Price,
-        int Count,
-        string MainPhoto);
+
 
     public class GetProductsHandler : IQueryHandler<IEnumerable<ProductDTO>>
     {
@@ -33,12 +28,15 @@ namespace InternetShop.Application.Products.Queries
         {
             var products = await productRepository.Get();
             var productDtoList = products.Select(product => new ProductDTO(
-            product.Title,
-            product.Description,
-            product.Price,
-            product.Count,
-            product.MainPhoto.Path
-        ));
+                product.Id,
+                product.Title,
+                product.Description,
+                product.Price,
+                product.Count,
+                product.MainPhoto.Path,
+                product.Brand.Id,
+                product.Category.Id
+            ));
 
             return productDtoList;
         }
